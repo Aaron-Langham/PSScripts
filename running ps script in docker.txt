@@ -1,0 +1,18 @@
+Running Powershell Script in docker:
+
+Pre-Requisits:
+	Docker enviroment with powershell image
+	Script on host in users Home folder
+
+Create Dock with image and link to volume for moving scripts to:
+	docker run --name "pwsh-script" --interactive --tty --volume PSScripts:/scripts mcr.microsoft.com/powershell:latest
+		exit
+
+Move Script to Dock:
+	docker cp "$ScriptName" pwsh-script:/scripts
+
+Remove that dock:
+	docker rm pwsh-script
+
+Run self removing dock to run script:
+	docker run --rm --volume PSScripts:/scripts mcr.microsoft.com/powershell:latest pwsh -F '/scripts/$ScriptName'
