@@ -1,0 +1,15 @@
+$age = (Get-Date).AddDays(-180)
+
+$DomainCheck = Get-CimInstance -ClassName Win32_OperatingSystem
+if ($DomainCheck.ProductType -ne "2") { Write-Host "Not a domain controller. Soft exiting." ; exit 0 }
+
+$OldComputers = Get-ADComputer -Filter * -properties DNSHostName,Enabled,WhenCreated,LastLogonDate | Select-Object DNSHostName,Enabled,WhenCreated,LastLogonDate | Where-Object {$_.LastLogonDate -lt $age} | Where-Object { $_.Enabled -eq $True} | Where-Object {$_.operatingsystem -notlike "*server*"} | Where-Object { $_.WhenCreated -lt ((Get-Date).AddDays(-14))}
+
+if (!$OldComputers) {Write-Host "Healthy"; exit 0}
+else {
+    Write-Host "Not Healthy - Computer accounts found that have not logged on for 180 days"
+    if ($Host.Version.Major -gt 4){foreach ($message in $OldComputers){Write-Host $message}}
+    elseif ($Host.Version.Major -lt 5){foreach ($message in $OldComputers){$message}}
+    else {foreach ($message in $OldComputers){Write-Host $message}}
+    exit 1
+}
