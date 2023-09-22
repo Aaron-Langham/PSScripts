@@ -5,12 +5,7 @@ $DomainCheck = Get-CimInstance -ClassName Win32_OperatingSystem
 if ($DomainCheck.ProductType -ne "2") { Write-Host "Not a domain controller. Soft exiting." ; exit 0 }
 
 $blacklistU = @(
-"Administrator"
-"Disc"
-"SQL"
-"DFWTechSupport"
-"SOE"
-"soe")
+"Administrator")
 
 New-Item -ItemType Directory -Force -Path C:\DiscStuff\Logs
 
