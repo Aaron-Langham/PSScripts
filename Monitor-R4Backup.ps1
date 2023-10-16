@@ -11,5 +11,7 @@ try {
 catch {$filteredDbBackupLog = $null}
 
 
-if (($filteredFullBackupLog -eq $null) -or ($filteredDbBackupLog -eq $null)){Write-Host "Backups have Run"; exit 0}
-else {Write-Host "A Backup has Failed"; exit 1}
+if (($filteredFullBackupLog -eq $null) -and ($filteredDbBackupLog -eq $null)){Write-Host "Both Backups have Run"; exit 0}
+elseif (($filteredFullBackupLog -ne $null) -and ($filteredDbBackupLog -eq $null)){Write-Host "Full Backup has NOT Run"; exit 0}
+elseif (($filteredFullBackupLog -eq $null) -and ($filteredDbBackupLog -ne $null)){Write-Host "Database Backup has NOT Run"; exit 0}
+else {Write-Host "Both Backups have NOT Run"; exit 1}
