@@ -11,5 +11,5 @@ try {
 catch {$filteredDbBackupLog = $null}
 
 
-if (($filteredFullBackupLog -eq $null) -or ($filteredDbBackupLog -eq $null)){exit 0}
-else {exit 1}
+if (($filteredFullBackupLog -eq $null) -or ($filteredDbBackupLog -eq $null)){Write-Host "Backups have Run"; exit 0}
+else {Write-Host "A Backup has Failed"; exit 1}
