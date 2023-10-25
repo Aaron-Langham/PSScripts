@@ -9,7 +9,7 @@ $ScheduledTasks = @()
 $DisabledTasks = @()
 
 #Enable VSS and Set tasks
-$Disks = Get-Volume | Where-Object {$_.DriveType -eq "Fixed"} | Where-Object {$_.DriveLetter -ne $null} | Where-Object {$_.Size -gt 1GB}
+$Disks = Get-Volume | Where-Object {$_.DriveType -eq "Fixed"} | Where-Object {$_.DriveLetter -ne $null} | Where-Object {$_.Size -gt 5GB}
 
 $offset = New-TimeSpan
 $offsetInterval = New-TimeSpan -Minutes 15
@@ -40,7 +40,7 @@ $DisabledTasks = foreach ($Task in $ScheduledTasks){Disable-ScheduledTask -TaskN
 $DisabledTasks | ConvertTo-html -Property TaskName, State | Out-File C:\DiscStuff\Logs\$date-Shadows.html
 
 if (!$DisabledTasks) {Write-Host "No Default VSS Tasks Disabled"}
-else {Write-Host "Default VSS Tasks have been disabled. Pleased see log on Device to see details: C:\DiscStuff\Logs"}
+else {Write-Host "Default VSS Tasks have been disabled. Please see log on Device to see details: C:\DiscStuff\Logs"}
 
 #Update Custom feilds
 $ScheduledTasks = Get-ScheduledTask -TaskName "ShadowCopy*"
