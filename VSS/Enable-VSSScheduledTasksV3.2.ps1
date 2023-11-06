@@ -1,4 +1,4 @@
-#Script to Enable VSS with Custom Schedule, Disabe Default VSS tasks if there are any, update ninja custom feilds.
+#Script to Enable VSS with Custom Schedule, Disabe Default VSS tasks if there are any.
 
 #Setting Varibles
 $date = Get-Date -Format yyyy-MM-dd
@@ -66,6 +66,3 @@ if ((($DefaultTasks.State -eq "Disabled") -or ($DefaultTasks -eq $null)) -and ($
 
 if ($Host.Version.Major -gt 4){Write-Host $VSS}
 elseif ($Host.Version.Major -lt 5){$VSS}
-
-Ninja-Property-Set vssenabled $VSS.enabled
-Ninja-Property-Set vsstype $VSS.type
