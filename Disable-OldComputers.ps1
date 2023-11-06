@@ -1,5 +1,5 @@
 $threashold = -180 # Negative Integer, the age threshold of accounts that any older will be disabled.
-$logPath = "C:\Logs" # String, the file path for the log to be saved to. If it does not exist it will be created..
+$logPath = "C:\Logs" # String, the file path for the log to be saved to. If it does not exist it will be created.
 
 $date = Get-Date -Format yyyy-MM-dd
 $age = (Get-Date).AddDays($threashold)
