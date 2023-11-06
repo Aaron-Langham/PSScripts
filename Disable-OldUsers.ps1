@@ -22,7 +22,7 @@ foreach ($user in $OldUsers){Set-ADUser -Identity $user.SamAccountName -Enabled 
 $OldUsers | ConvertTo-html -Property Name, UserPrincipalName, SamAccountName, WhenCreated, LastLogonDate | Out-File $logPath\$date-OldUsers.html
 
 if (!$OldUsers) {Write-Host "No Users Accounts Disabled"; exit 0}
-else {Write-Host "User accounts found that have not logged on for 180 days have been disabled. Pleased see log on Device to see details: C:\DiscStuff\Logs"
+else {Write-Host "User accounts found that have not logged on for 180 days have been disabled. Pleased see log on Device to see details: $logPath"
     if ($Host.Version.Major -gt 4){foreach ($message in $OldUsers){Write-Host $message}}
     elseif ($Host.Version.Major -lt 5){foreach ($message in $OldUsers){$message}}
     else {foreach ($message in $OldUsers){Write-Host $message}}
