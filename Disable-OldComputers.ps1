@@ -9,7 +9,7 @@ if ($DomainCheck.ProductType -ne "2") { Write-Host "Not a domain controller. Sof
 
 New-Item -ItemType Directory -Force -Path $logPath
 
-$OldComputers = Get-ADComputer -Filter * -properties Name,DNSHostName,SamAccountName,Enabled,WhenCreated,LastLogonDate,operatingsystem | Select-Object Name,DNSHostName,SamAccountName,Enabled,WhenCreated,LastLogonDate,operatingsystem | Where-Object {$_.LastLogonDate -lt $age} | Where-Object { $_.Enabled -eq $True} | Where-Object {$_.operatingsystem -notlike "*server*"} | Where-Object { $_.WhenCreated -lt ((Get-Date).AddDays(-14))}
+$OldComputers = Get-ADComputer -Filter * -properties Name,DNSHostName,SamAccountName,Enabled,WhenCreated,LastLogonDate,operatingsystem,isCriticalSystemObject | Select-Object Name,DNSHostName,SamAccountName,Enabled,WhenCreated,LastLogonDate,operatingsystem,isCriticalSystemObject | Where-Object {$_.LastLogonDate -lt $age} | Where-Object { $_.Enabled -eq $True} | Where-Object {$_.operatingsystem -notlike "*server*"} | Where-Object {$_.isCriticalSystemObject -eq $false} | Where-Object { $_.WhenCreated -lt ((Get-Date).AddDays(-14))}
 
 foreach ($computer in $OldComputers){Set-ADComputer -Identity $computer.SamAccountName -Enabled $false}
 
