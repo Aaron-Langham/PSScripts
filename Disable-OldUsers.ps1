@@ -9,9 +9,7 @@ if ($DomainCheck.ProductType -ne "2") { Write-Host "Not a domain controller. Sof
 
 $blacklistU = @(
 "Administrator"
-"Disc"
-"SQL"
-"DFWTechSupport")
+)
 
 New-Item -ItemType Directory -Force -Path $logPath
 
