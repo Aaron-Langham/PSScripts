@@ -9,7 +9,7 @@ $blacklistU = @(
 "Administrator"
 )
 
-$OldUsers = Get-ADuser -Filter * -properties Name, UserPrincipalName, SamAccountName, Enabled, WhenCreated, LastLogonDate, msDS-LastSuccessfulInteractiveLogonTime | Select-Object Name, UserPrincipalName, SamAccountName, Enabled, WhenCreated, LastLogonDate, msDS-LastSuccessfulInteractiveLogonTime | Where-Object { $_.LastLogonDate -lt $age } | Where-Object { $_.Enabled -eq $True}| Where-Object { $_.UserPrincipalName -ne $null} | Where-Object { $_.Name -notin $blacklistU} | Where-Object { $_.WhenCreated -lt ((Get-Date).AddDays(-14))}
+$OldUsers = Get-ADuser -Filter * -properties Name, UserPrincipalName, SamAccountName, Enabled, WhenCreated, LastLogonDate, msDS-LastSuccessfulInteractiveLogonTime | Select-Object Name, UserPrincipalName, SamAccountName, Enabled, WhenCreated, LastLogonDate, msDS-LastSuccessfulInteractiveLogonTime | Where-Object { $_.LastLogonDate -lt $age } | Where-Object { $_.Enabled -eq $True}| Where-Object { $_.UserPrincipalName -ne $null} | Where-Object { $_.Name -notin $blacklistU} | Where-Object { $_.SamAccountName -notin $blacklistU} | Where-Object { $_.WhenCreated -lt ((Get-Date).AddDays(-14))}
 
 if (!$OldUsers) {Write-Host "Healthy"; exit 0}
 else {
