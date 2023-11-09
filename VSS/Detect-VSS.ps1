@@ -1,3 +1,5 @@
+# Detects various states of Volume Shadow Copies, Disabled, Enabled with Default schedule, Enabled with custom schedule and Enabled with custom schedule ensuring all disks are enabled.
+
 $ScheduledTasks = Get-ScheduledTask -TaskName "ShadowCopy*"
 $DefaultTasks = Get-ScheduledTask -TaskName "ShadowCopyVolume{*}"
 $CustomTasks = Get-ScheduledTask -TaskName "ShadowCopy * drive"
@@ -32,9 +34,6 @@ if ($MissingDrives -ne $null)
 
 if ($Host.Version.Major -gt 4){Write-Host $VSS}
 elseif ($Host.Version.Major -lt 5){$VSS}
-
-Ninja-Property-Set vssenabled $VSS.enabled
-Ninja-Property-Set vsstype $VSS.type
 
 if ($VSS.enabled -eq $false){exit 1}
 elseif ($VSS.type -ne "Custom"){exit 2}
