@@ -1,4 +1,6 @@
-﻿function Write-Diag ($messages) {
+# Runs an Orthotrac Backup
+ 
+ function Write-Diag ($messages) {
     foreach ($Message in $Messages) { $Message }
 }
 Function Write-Alert ($message) 
