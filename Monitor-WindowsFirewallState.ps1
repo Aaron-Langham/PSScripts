@@ -1,3 +1,5 @@
+# Monitors the state of windows firewall
+
 function Write-Diag {
     foreach ($Message in $Messages) { $Message }
 }
