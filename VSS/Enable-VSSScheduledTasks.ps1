@@ -1,9 +1,11 @@
 #Script to Enable Volume Shadow Copies with Custom Schedule, and disable any Default VSS tasks if there are any.
 
-#Setting Varibles
+#Setting Variables
+$logPath = "C:\Logs"
+
 $date = Get-Date -Format yyyy-MM-dd
 
-New-Item -ItemType Directory -Force -Path C:\DiscStuff\Logs
+New-Item -ItemType Directory -Force -Path $logPath
 
 $ScheduledTasks = @()
 $DisabledTasks = @()
@@ -37,12 +39,12 @@ $ScheduledTasks = Get-ScheduledTask -TaskName "ShadowCopyVolume{*}"
 
 $DisabledTasks = foreach ($Task in $ScheduledTasks){Disable-ScheduledTask -TaskName $Task.TaskName}
 
-$DisabledTasks | ConvertTo-html -Property TaskName, State | Out-File C:\DiscStuff\Logs\$date-Shadows.html
+$DisabledTasks | ConvertTo-html -Property TaskName, State | Out-File "$logPath\$date-Shadows.html"
 
 if (!$DisabledTasks) {Write-Host "No Default VSS Tasks Disabled"}
-else {Write-Host "Default VSS Tasks have been disabled. Please see log on Device to see details: C:\DiscStuff\Logs"}
+else {Write-Host "Default VSS Tasks have been disabled. Please see the log on Device to see details: C:\DiscStuff\Logs"}
 
-#Update Custom feilds
+#Update Custom fields
 $ScheduledTasks = Get-ScheduledTask -TaskName "ShadowCopy*"
 $DefaultTasks = Get-ScheduledTask -TaskName "ShadowCopyVolume{*}"
 $CustomTasks = Get-ScheduledTask -TaskName "ShadowCopy * drive"
