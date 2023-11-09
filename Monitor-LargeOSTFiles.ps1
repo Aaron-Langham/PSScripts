@@ -1,3 +1,5 @@
+# Monitors if any user's OST file is over a given size, default 45GB
+
 param([double]$MinSize = 45)
 
 $UserFolder = "C:\Users"
