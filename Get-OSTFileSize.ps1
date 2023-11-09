@@ -1,3 +1,5 @@
+# Generates a list of all user's OST file sizes
+
 $UserFolder = "C:\Users"
 $OutlookFolder = "AppData\Local\Microsoft\Outlook"
 
