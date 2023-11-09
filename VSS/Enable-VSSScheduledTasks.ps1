@@ -2,13 +2,11 @@
 
 #Setting Variables
 $logPath = "C:\Logs"
-
 $date = Get-Date -Format yyyy-MM-dd
-
-New-Item -ItemType Directory -Force -Path $logPath
-
 $ScheduledTasks = @()
 $DisabledTasks = @()
+
+New-Item -ItemType Directory -Force -Path $logPath
 
 #Enable VSS and Set tasks
 $Disks = Get-Volume | Where-Object {$_.DriveType -eq "Fixed"} | Where-Object {$_.DriveLetter -ne $null} | Where-Object {$_.Size -gt 5GB}
