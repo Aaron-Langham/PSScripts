@@ -1,3 +1,5 @@
+# Monitors wether an R4 Full backup has run in the last day or a database backup in the last 18 hours
+
 try{
     $fullBackupLog = Get-EventLog -LogName Application -Source MSSQLSERVER -Message "*FullBackup*" -After (get-date).AddDays(-1)
     $filteredFullBackupLog = ForEach ($event in $fullBackupLog){if ($event.EventID -eq 18264){$event}}
