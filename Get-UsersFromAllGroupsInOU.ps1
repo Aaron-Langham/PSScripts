@@ -37,4 +37,5 @@ $groupsMembers1 = ForEach ($group in $groupsMembers){
     }
 }
 
+New-Item -ItemType Directory -Force -Path $logPath
 $groupsMembers1 | ConvertTo-Html -Property GroupName, Members | Out-File "$logPath\$date-$name-GroupMembers.html"
