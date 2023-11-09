@@ -1,3 +1,5 @@
+# Monitors Active directory Computers that have not been logged into for a given amount of days.
+
 $threashold = -180 # Negative Integer, the age threshold of accounts that any older will be disabled.
 
 $age = (Get-Date).AddDays($threashold)
