@@ -1,4 +1,4 @@
-#Script to Enable VSS with Custom Schedule, Disabe Default VSS tasks if there are any.
+#Script to Enable Volume Shadow Copies with Custom Schedule, and disable any Default VSS tasks if there are any.
 
 #Setting Varibles
 $date = Get-Date -Format yyyy-MM-dd
