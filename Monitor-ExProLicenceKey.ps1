@@ -1,3 +1,5 @@
+# Monitors whether Examine Pro Licence USB Key is preasent
+
 $driver = Get-WindowsDriver -Online -all | Where-Object {$_.ProviderName -eq "SafeNet, Inc."}
 
 if ($driver -eq $null){Write-Host "Licence Key is Missing"; exit 1}
