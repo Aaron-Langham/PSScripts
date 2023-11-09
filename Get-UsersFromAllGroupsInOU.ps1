@@ -2,7 +2,7 @@
 # For example: $OU = "OU=Folder Permissions,OU=Security Groups,OU=MyBusiness,DC=costno,DC=local"
 # That path can be found in the Properties > Attribute Editor > distinguishedName of the OU in question:
 
-$OU = "OU=$OUName,OU=$OUGroup,OU=MyBusiness,DC=$Domain,DC=local" # OU Path
+$OU = "" # OU Path
 $logPath = "C:\Logs" # Log output Path
 $date = Get-Date -Format yyyy-MM-dd
 $name = (((($OU -split "=")[1] -split ",")[0]) -replace '\s','') -replace '\W',''
