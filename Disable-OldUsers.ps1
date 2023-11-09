@@ -1,3 +1,5 @@
+# Disables Active directory Users that have not been logged into for a given amount of days and saves a report to a given file path.
+
 $threashold = -180 # Negative Integer, the age threshold of accounts that any older will be disabled.
 $logPath = "C:\Logs" # String, the file path for the log to be saved to. If it does not exist it will be created.
 
