@@ -1,3 +1,5 @@
+# Gets all the WiFi profiles stored on a PC, including passwords
+
 $wifi = $(netsh.exe wlan show profiles)
 
 if ($wifi -match "There is no wireless interface on the system."){
