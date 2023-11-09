@@ -1,4 +1,6 @@
-﻿$oldAge = -1
+# Monitors whether an Orthotrac backup has run in the last day.
+ 
+$oldAge = -1
 $oldDate = (Get-Date).AddDays($oldAge)
 
 Function Get-BackupDir 
