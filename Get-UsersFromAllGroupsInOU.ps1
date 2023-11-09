@@ -5,6 +5,7 @@
 $OU = "OU=$OUName,OU=$OUGroup,OU=MyBusiness,DC=$Domain,DC=local" # OU Path
 $logPath = "C:\Logs" # Log output Path
 $date = Get-Date -Format yyyy-MM-dd
+$name = (((($OU -split "=")[1] -split ",")[0]) -replace '\s','') -replace '\W',''
 
 $groups = Get-ADGroup -Filter * -SearchBase $OU
 
@@ -36,4 +37,4 @@ $groupsMembers1 = ForEach ($group in $groupsMembers){
     }
 }
 
-$groupsMembers1 | ConvertTo-Html -Property GroupName, Members | Out-File "$logPath\$date-GroupMembers.html"
+$groupsMembers1 | ConvertTo-Html -Property GroupName, Members | Out-File "$logPath\$date-$name-GroupMembers.html"
