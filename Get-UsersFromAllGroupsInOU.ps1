@@ -1,3 +1,7 @@
+# This script is run against an OU, you'll have to edit the first variable in the script ($OU) to the OU path that you need. 
+# For example: $OU = "OU=Folder Permissions,OU=Security Groups,OU=MyBusiness,DC=costno,DC=local"
+# That path can be found in the Properties > Attribute Editor > distinguishedName of the OU in question:
+
 $OU = "OU=$OUName,OU=$OUGroup,OU=MyBusiness,DC=$Domain,DC=local" # OU Path
 $logPath = "C:\Logs" # Log output Path
 $date = Get-Date -Format yyyy-MM-dd
