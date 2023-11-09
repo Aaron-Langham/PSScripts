@@ -1,3 +1,5 @@
+# Monitors any changes to privileged groups
+
 Function Get-PrivilegedGroupChanges {
     Param(
         $Server = "localhost",
