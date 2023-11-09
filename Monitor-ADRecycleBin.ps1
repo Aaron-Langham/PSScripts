@@ -1,3 +1,5 @@
+# Monitors whether Active Directory Recycle bin feature is active
+
 $Recycler = Get-ADOptionalFeature -Filter 'name -like "Recycle Bin Feature"'
 
 if(!$Recycler.EnabledScopes){Write-Host "Active Directory Recycle Bin is not enabled"; exit 1}
