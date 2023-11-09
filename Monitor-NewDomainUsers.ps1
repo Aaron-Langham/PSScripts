@@ -1,3 +1,5 @@
+# Monitors if any new active directory users are created
+
 $When = ((Get-Date).AddDays(-1)).Date
 $GetUsers = Get-ADUser -Filter { whenCreated -ge $When } -Properties whenCreated
 
