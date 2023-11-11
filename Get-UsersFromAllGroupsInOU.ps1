@@ -1,5 +1,5 @@
 # This script is run against an OU, you'll have to edit the first variable in the script ($OU) to the OU path that you need. 
-# For example: $OU = "OU=Folder Permissions,OU=Security Groups,OU=MyBusiness,DC=costno,DC=local"
+# For example: $OU = "OU=Folder Permissions,OU=Security Groups,OU=MyBusiness,DC=contoso,DC=local"
 # That path can be found in the Properties > Attribute Editor > distinguishedName of the OU in question:
 
 $OU = "" # OU Path
